@@ -10,3 +10,5 @@
 ---------------------
 * Package: com.microcraftmc.playuhc
 * Project: PlayUHC
+
+**Exclusive authorized use of PlayUHC granted to BubbleNetwork**
