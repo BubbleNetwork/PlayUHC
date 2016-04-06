@@ -1,4 +1,4 @@
-name: BubbleUHC
+name: PlayUhc
 version: 1
 main: com.microcraftmc.playuhc.PlayUhc
 description: Automates UHC games on a dedicated craftbukkit 1.8 server

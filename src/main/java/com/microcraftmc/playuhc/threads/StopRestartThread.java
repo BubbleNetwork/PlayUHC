@@ -43,7 +43,7 @@ public class StopRestartThread implements Runnable{
 				}
 				
 				timeBeforeStop--;
-				Bukkit.getScheduler().scheduleSyncDelayedTask(PlayUhc.getPlugin(), this,20);
+				Bukkit.getScheduler().scheduleSyncDelayedTask(PlayUhc.getInstance().getPlugin(), this,20);
 				}
 	}
 

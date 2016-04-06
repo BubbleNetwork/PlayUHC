@@ -41,7 +41,7 @@ public class TimeBeforeSendBungeeThread implements Runnable{
 	@Override
 	public void run() {
 		
-		Bukkit.getScheduler().runTask(PlayUhc.getPlugin(), new Runnable(){
+		Bukkit.getScheduler().runTask(PlayUhc.getInstance().getPlugin(), new Runnable(){
 
 			@Override
 			public void run() {
@@ -65,7 +65,7 @@ public class TimeBeforeSendBungeeThread implements Runnable{
 				}
 				
 				if(remainingTime > 0){
-					Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getPlugin(), task, 20);
+					Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getInstance().getPlugin(), task, 20);
 				}
 			}
 			

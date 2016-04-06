@@ -67,7 +67,7 @@ public class UpdateScoreboardThread implements Runnable{
 	}
 	@Override
 	public void run() {
-		Bukkit.getScheduler().runTask(PlayUhc.getPlugin(), new Runnable(){
+		Bukkit.getScheduler().runTask(PlayUhc.getInstance().getPlugin(), new Runnable(){
 
 			@Override
 			public void run() {
@@ -79,7 +79,7 @@ public class UpdateScoreboardThread implements Runnable{
 				}catch (UhcPlayerNotOnlineException e) {
 					// No scoreboard for offline players
 				}
-				Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getPlugin(), task, nextTick);	
+				Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getInstance().getPlugin(), task, nextTick);
 				
 			}});
 		

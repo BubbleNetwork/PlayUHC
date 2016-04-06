@@ -101,7 +101,7 @@ public class MapLoader {
 		wc.generateStructures(true);
 		wc.environment(env);
 		if(env.equals(Environment.NORMAL)){
-			PlayUhc.getPlugin().getConfig().set("worlds.overworld", uuid.toString());
+			PlayUhc.getInstance().getPlugin().getConfig().set("worlds.overworld", uuid.toString());
 			gm.getConfiguration().setOverworldUuid(uuid.toString());
 			if(gm.getConfiguration().getPickRandomSeedFromList() && !gm.getConfiguration().getSeeds().isEmpty()){
 				Random r = new Random();
@@ -114,10 +114,10 @@ public class MapLoader {
 				copyWorld(randomWorldName,uuid);
 			}
 		}else{
-			PlayUhc.getPlugin().getConfig().set("worlds.nether", uuid.toString());
+			PlayUhc.getInstance().getPlugin().getConfig().set("worlds.nether", uuid.toString());
 			gm.getConfiguration().setNetherUuid(uuid.toString());
 		}		
-		PlayUhc.getPlugin().saveConfig();
+		PlayUhc.getInstance().getPlugin().saveConfig();
 		
 		wc.type(WorldType.NORMAL);
 		Bukkit.getServer().createWorld(wc);
@@ -232,7 +232,7 @@ public class MapLoader {
 
     	final VeinGenerator veinGenerator = new VeinGenerator();
     	
-		Bukkit.getScheduler().runTaskAsynchronously(PlayUhc.getPlugin(), new Runnable(){
+		Bukkit.getScheduler().runTaskAsynchronously(PlayUhc.getInstance().getPlugin(), new Runnable(){
 
 			@Override
 			public void run() {				
@@ -278,7 +278,7 @@ public class MapLoader {
 								Bukkit.getLogger().info(message);
 							}
 							
-							Bukkit.getScheduler().scheduleSyncDelayedTask(PlayUhc.getPlugin(), new RunnableWithParameter(i,j,nextRest),delayTask);
+							Bukkit.getScheduler().scheduleSyncDelayedTask(PlayUhc.getInstance().getPlugin(), new RunnableWithParameter(i,j,nextRest),delayTask);
 						}else{
 							chunksLoaded = totalChunksToLoad;
 							Bukkit.getLogger().info("[PlayUHC] Environment "+env.toString()+" 100% loaded");
@@ -291,7 +291,7 @@ public class MapLoader {
 			        }
 				}
 				
-				Bukkit.getScheduler().scheduleSyncDelayedTask(PlayUhc.getPlugin(), new RunnableWithParameter(-maxChunk,-maxChunk,restEveryTicks),0);
+				Bukkit.getScheduler().scheduleSyncDelayedTask(PlayUhc.getInstance().getPlugin(), new RunnableWithParameter(-maxChunk,-maxChunk,restEveryTicks),0);
 				
 			}
 			

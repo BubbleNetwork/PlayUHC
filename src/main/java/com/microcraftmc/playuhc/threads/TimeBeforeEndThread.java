@@ -46,7 +46,7 @@ public class TimeBeforeEndThread implements Runnable{
 		}
 		
 		if(remainingTime > 0 && (gm.getGameState().equals(GameState.PLAYING) || gm.getGameState().equals(GameState.DEATHMATCH)))
-			Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getPlugin(), task, 20);		
+			Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getInstance().getPlugin(), task, 20);
 	}
 	
 }

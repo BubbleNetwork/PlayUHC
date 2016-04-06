@@ -40,7 +40,7 @@ public class WorldBorderThread implements Runnable{
 			startMoving();
 		}else{
 			timeBeforeShrink--;
-			Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getPlugin(), this, 20);
+			Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getInstance().getPlugin(), this, 20);
 		}
 	}
 	

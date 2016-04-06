@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.microcraftmc.playuhc.configuration.LobbyConfig;
+import com.thebubblenetwork.api.framework.plugin.util.BubbleRunnable;
+import com.thebubblenetwork.api.game.BubbleGameAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Difficulty;
@@ -180,7 +182,7 @@ public class GameManager {
 		}
 		
 		if(getConfiguration().getEnableBungeeSupport())
-			PlayUhc.getPlugin().getServer().getMessenger().registerOutgoingPluginChannel(PlayUhc.getPlugin(), "BungeeCord");
+			PlayUhc.getInstance().getPlugin().getServer().getMessenger().registerOutgoingPluginChannel(PlayUhc.getInstance().getPlugin(), "BungeeCord");
 		
 		if(getConfiguration().getEnablePregenerateWorld() && !getConfiguration().getDebug())
 			mapLoader.generateChunks(Environment.NORMAL);
@@ -216,12 +218,14 @@ public class GameManager {
 		loadWorlds();
 		registerCommands();
 		gameState = GameState.WAITING;
+		PlayUhc.getInstance().setState(BubbleGameAPI.State.LOBBY);
 		Bukkit.getLogger().info(Lang.DISPLAY_MESSAGE_PREFIX+" Players are now allowed to join");
-		Bukkit.getScheduler().scheduleSyncDelayedTask(PlayUhc.getPlugin(), new PreStartThread(),0);
+		Bukkit.getScheduler().scheduleSyncDelayedTask(PlayUhc.getInstance().getPlugin(), new PreStartThread(),0);
 	}
 	
 	public void startGame(){
 		setGameState(GameState.STARTING);
+		PlayUhc.getInstance().setState(BubbleGameAPI.State.PREGAME);
 		if(!getConfiguration().getAlwaysDay())
 			Bukkit.getWorld(configuration.getOverworldUuid()).setGameRuleValue("doDaylightCycle", "true");
 		broadcastInfoMessage(Lang.GAME_STARTING);
@@ -232,6 +236,7 @@ public class GameManager {
 	
 	public void startWatchingEndOfGame(){
 		gameState = GameState.PLAYING;
+		PlayUhc.getInstance().setState(BubbleGameAPI.State.INGAME);
 
 		World overworld = Bukkit.getWorld(configuration.getOverworldUuid());
 		overworld.setGameRuleValue("doMobSpawning", "true");
@@ -239,11 +244,11 @@ public class GameManager {
 		//TODO: are we using a schematic lobby?
 		getLobby().destroyBoundingBox();
 		getPlayersManager().startWatchPlayerPlayingThread();
-		Bukkit.getScheduler().runTaskAsynchronously(PlayUhc.getPlugin(), new ElapsedTimeThread());
-		Bukkit.getScheduler().runTaskAsynchronously(PlayUhc.getPlugin(), new EnablePVPThread());
-		Bukkit.getScheduler().runTaskAsynchronously(PlayUhc.getPlugin(), new Auto20MinBroadcastThread());
+		Bukkit.getScheduler().runTaskAsynchronously(PlayUhc.getInstance().getPlugin(), new ElapsedTimeThread());
+		Bukkit.getScheduler().runTaskAsynchronously(PlayUhc.getInstance().getPlugin(), new EnablePVPThread());
+		Bukkit.getScheduler().runTaskAsynchronously(PlayUhc.getInstance().getPlugin(), new Auto20MinBroadcastThread());
 		if(getConfiguration().getEnableTimeLimit())
-			Bukkit.getScheduler().runTaskAsynchronously(PlayUhc.getPlugin(), new TimeBeforeEndThread());
+			Bukkit.getScheduler().runTaskAsynchronously(PlayUhc.getInstance().getPlugin(), new TimeBeforeEndThread());
 		worldBorder.startBorderThread();
 	}
 
@@ -260,7 +265,7 @@ public class GameManager {
 	private void loadConfig(){
 		new Lang();
 
-		FileConfiguration cfg = PlayUhc.getPlugin().getConfig();
+		FileConfiguration cfg = PlayUhc.getInstance().getPlugin().getConfig();
 		configuration = new MainConfiguration();
 		configuration.load(cfg);
 		
@@ -287,7 +292,7 @@ public class GameManager {
 			listeners.add(new PingListener());
 			listeners.add(new BlockListener());
 			for(Listener listener : listeners){
-				Bukkit.getServer().getPluginManager().registerEvents(listener, PlayUhc.getPlugin());
+				Bukkit.getServer().getPluginManager().registerEvents(listener, PlayUhc.getInstance().getPlugin());
 			}
 	}
 	
@@ -332,9 +337,9 @@ public class GameManager {
 	
 	private void registerCommands(){
 			// Registers CommandExecutor
-			PlayUhc.getPlugin().getCommand("uhc").setExecutor(new UhcCommandExecutor());
-			PlayUhc.getPlugin().getCommand("chat").setExecutor(new ChatCommandExecutor());
-			PlayUhc.getPlugin().getCommand("teleport").setExecutor(new TeleportCommandExecutor());
+			PlayUhc.getInstance().getPlugin().getCommand("uhc").setExecutor(new UhcCommandExecutor());
+			PlayUhc.getInstance().getPlugin().getCommand("chat").setExecutor(new ChatCommandExecutor());
+			PlayUhc.getInstance().getPlugin().getCommand("teleport").setExecutor(new TeleportCommandExecutor());
 	}
 
 	public void endGame() {
@@ -345,7 +350,7 @@ public class GameManager {
 			broadcastInfoMessage(Lang.GAME_FINISHED);
 			Sounds.playAll(Sound.ENDERDRAGON_GROWL, 1, 2);
 			getPlayersManager().setAllPlayersEndGame();
-			Bukkit.getScheduler().scheduleSyncDelayedTask(PlayUhc.getPlugin(), new StopRestartThread(),20);
+			Bukkit.getScheduler().scheduleSyncDelayedTask(PlayUhc.getInstance().getPlugin(), new StopRestartThread(),20);
 		}
 		
 	}
@@ -368,7 +373,7 @@ public class GameManager {
 			getWorldBorder().setBukkitWorldBorderSize(arenaLocation.getWorld(), arenaLocation.getBlockX(), arenaLocation.getBlockZ(), getArena().getMaxSize());
 			
 			// Start Enable pvp thread
-			Bukkit.getScheduler().scheduleSyncDelayedTask(PlayUhc.getPlugin(), new StartDeathmatchThread(),20);
+			Bukkit.getScheduler().scheduleSyncDelayedTask(PlayUhc.getInstance().getPlugin(), new StartDeathmatchThread(),20);
 		}
 		
 	}

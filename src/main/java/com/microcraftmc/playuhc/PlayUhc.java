@@ -1,6 +1,11 @@
 package com.microcraftmc.playuhc;
 
+import com.microcraftmc.playuhc.game.GameState;
+import com.thebubblenetwork.api.framework.plugin.util.BubbleRunnable;
+import com.thebubblenetwork.api.game.maps.GameMap;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
+import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.thebubblenetwork.api.game.BubbleGameAPI;
 
@@ -30,24 +35,32 @@ public class PlayUhc extends BubbleGameAPI {
 		return instance;
 	}
 
+	public PlayUhc() {
+		super("PlayUhc", GameMode.SURVIVAL, "NONE", 4);
+
+		instance = this;
+
+	}
+
 	public void onEnable(){
-	
+
+		getPlugin().saveDefaultConfig();
+
 		// Blocks players joins while loading the plugin
 		Bukkit.getServer().setWhitelist(true);
 
 
-		Bukkit.getScheduler().runTaskLater(getPlugin(), new Runnable(){
-			
-			@Override
+		new BubbleRunnable() {
 			public void run() {
+
 				GameManager gameManager = new GameManager();
 				gameManager.loadNewGame();
-				
-				// Unlock players joins and rely on UhcPlayerJoinListener
-				Bukkit.getServer().setWhitelist(false);
+
+				//unlock so players can join and rely on UhcPlayerJoinListener
+				getServer().setWhitelist(false);
+
 			}
-			
-		}, 1);
+		}.runTask(getInstance());
 		
 		
 	}
@@ -57,10 +70,14 @@ public class PlayUhc extends BubbleGameAPI {
 	}
 
 	public void onStateChange(State oldstate, State newstate) {
-		if (newstate == State.HIDDEN){
 
-		}
 	}
+
+	public void teleportPlayers(GameMap map, World world) {
+
+	}
+
+	public
 
 	public long finishUp() {
 		//TODO

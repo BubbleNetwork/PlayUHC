@@ -34,12 +34,12 @@ public class StartDeathmatchThread implements Runnable{
 		this.task = this;
 		this.listener = new WaitForDeathmatchListener();
 		GameManager.getGameManager().getPlayersManager().setAllPlayersStartDeathmatch();
-		Bukkit.getPluginManager().registerEvents(listener, PlayUhc.getPlugin());
+		Bukkit.getPluginManager().registerEvents(listener, PlayUhc.getInstance().getPlugin());
 	}
 	
 	@Override
 	public void run() {
-		Bukkit.getScheduler().runTask(PlayUhc.getPlugin(), new Runnable(){
+		Bukkit.getScheduler().runTask(PlayUhc.getInstance().getPlugin(), new Runnable(){
 
 			@Override
 			public void run() {
@@ -59,7 +59,7 @@ public class StartDeathmatchThread implements Runnable{
 					}
 					
 					if(timeBeforePVP > 0){
-						Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getPlugin(), task,20);
+						Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getInstance().getPlugin(), task,20);
 					}
 				}
 				
