@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.microcraftmc.playuhc</groupId>
-    <artifactId>PlayUHC</artifactId>
+    <artifactId>BubbleUHC</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <build>
@@ -75,9 +75,8 @@
         <dependency>
             <groupId>com.microcraftmc.SpigotUtils</groupId>
             <artifactId>SpigotUtils</artifactId>
-            <version>1.0.0</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/SpigotUtils-1.0-SNAPSHOT.jar</systemPath>
+            <version>1.0-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -100,6 +99,11 @@
             <version>LATEST</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.thebubblenetwork.api.framework</groupId>
+            <artifactId>BubbleFramework</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <repositories>
@@ -114,6 +118,10 @@
         <repository>
             <id>sk89q-snapshots</id>
             <url>http://maven.sk89q.com/artifactory/repo</url>
+        </repository>
+        <repository>
+            <id>plexi-repo</id>
+            <url>https://repo.plexilabs.net/microcraft/</url>
         </repository>
     </repositories>
 

@@ -32,14 +32,14 @@ public class Auto20MinBroadcastThread implements Runnable {
 
 	@Override
 	public void run() {
-		Bukkit.getScheduler().runTask(PlayUhc.getPlugin(), new Runnable(){
+		Bukkit.getScheduler().runTask(PlayUhc.getInstance().getPlugin(), new Runnable(){
 
 			@Override
 			public void run() {
 
 				if(broadcast){
 					GameManager.getGameManager().broadcastInfoMessage(Lang.DISPLAY_YOUTUBER_MARK);
-					Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getPlugin(), task, 24000);
+					Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getInstance().getPlugin(), task, 24000);
 				}
 				
 			}});

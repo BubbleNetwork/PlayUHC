@@ -2,6 +2,7 @@ package com.microcraftmc.playuhc;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import com.thebubblenetwork.api.game.BubbleGameAPI;
 
 import com.microcraftmc.playuhc.game.GameManager;
 
@@ -19,20 +20,23 @@ import com.microcraftmc.playuhc.game.GameManager;
  *
  */
 
-public class PlayUhc extends JavaPlugin{
+public class PlayUhc extends BubbleGameAPI {
+
+	public static final int VERSION = 1;
 	
-	private static PlayUhc pl;
-	
-	
+	private static PlayUhc instance;
+
+	public static PlayUhc getInstance() {
+		return instance;
+	}
+
 	public void onEnable(){
-		pl = this;
 	
 		// Blocks players joins while loading the plugin
 		Bukkit.getServer().setWhitelist(true);
-		saveDefaultConfig();
-		
-		
-		Bukkit.getScheduler().runTaskLater(this, new Runnable(){
+
+
+		Bukkit.getScheduler().runTaskLater(getPlugin(), new Runnable(){
 			
 			@Override
 			public void run() {
@@ -47,12 +51,23 @@ public class PlayUhc extends JavaPlugin{
 		
 		
 	}
-	
-	public static PlayUhc getPlugin(){
-		return pl;
-	}
-	
+
 	public void onDisable(){
 		Bukkit.getLogger().info("Plugin PlayUHC disabled");
+	}
+
+	public void onStateChange(State oldstate, State newstate) {
+		if (newstate == State.HIDDEN){
+
+		}
+	}
+
+	public long finishUp() {
+		//TODO
+		return Long.MAX_VALUE;
+	}
+
+	public int getVersion() {
+		return VERSION;
 	}
 }
