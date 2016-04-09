@@ -104,6 +104,20 @@
             <artifactId>BubbleFramework</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.thebubblenetwork.api.global</groupId>
+            <artifactId>GlobalAPI</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- xserver api -->
+        <dependency>
+            <groupId>de.mickare.xserver</groupId>
+            <artifactId>XServer-Bukkit</artifactId>
+            <version>2.0.5-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <repositories>
@@ -122,6 +136,10 @@
         <repository>
             <id>plexi-repo</id>
             <url>https://repo.plexilabs.net/microcraft/</url>
+        </repository>
+        <repository>
+            <id>xserver-repo</id>
+            <url>http://nexus.spacier.de/content/repositories/rs-public/</url>
         </repository>
     </repositories>
 

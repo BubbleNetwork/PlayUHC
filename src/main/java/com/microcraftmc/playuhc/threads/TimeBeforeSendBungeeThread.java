@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.exceptions.UhcPlayerNotOnlineException;
 import com.microcraftmc.playuhc.game.GameManager;
 import com.microcraftmc.playuhc.languages.Lang;
@@ -41,7 +41,7 @@ public class TimeBeforeSendBungeeThread implements Runnable{
 	@Override
 	public void run() {
 		
-		Bukkit.getScheduler().runTask(PlayUhc.getInstance().getPlugin(), new Runnable(){
+		Bukkit.getScheduler().runTask(BubbleUHC.getInstance().getPlugin(), new Runnable(){
 
 			@Override
 			public void run() {
@@ -65,7 +65,7 @@ public class TimeBeforeSendBungeeThread implements Runnable{
 				}
 				
 				if(remainingTime > 0){
-					Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getInstance().getPlugin(), task, 20);
+					Bukkit.getScheduler().runTaskLaterAsynchronously(BubbleUHC.getInstance().getPlugin(), task, 20);
 				}
 			}
 			

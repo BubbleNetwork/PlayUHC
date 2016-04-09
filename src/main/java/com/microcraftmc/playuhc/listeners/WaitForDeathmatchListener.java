@@ -15,7 +15,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 
 /**
  * Copyright Statement
@@ -76,7 +76,7 @@ public class WaitForDeathmatchListener implements Listener{
 	public void unregister(){
 		PlayerMoveEvent.getHandlerList().unregister(this);
 		
-		Bukkit.getScheduler().runTaskLater(PlayUhc.getPlugin(), new Runnable(){
+		Bukkit.getScheduler().runTaskLater(BubbleUHC.getInstance().getPlugin(), new Runnable(){
 
 			@Override
 			public void run() {

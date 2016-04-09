@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import com.microcraftmc.playuhc.BubbleUHC;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -13,7 +14,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.exceptions.UhcPlayerDoesntExistException;
 import com.microcraftmc.playuhc.game.GameManager;
 import com.microcraftmc.playuhc.languages.Lang;
@@ -51,7 +52,7 @@ public class KitsManager {
 	
 	
 	public static void loadKits(){
-		FileConfiguration cfg = PlayUhc.getPlugin().getConfig();
+		FileConfiguration cfg = BubbleUHC.getInstance().getPlugin().getConfig();
 		Set<String> kitsKeys = cfg.getConfigurationSection("kits").getKeys(false);
 		kits = new ArrayList<Kit>();
 		for(String kitKey : kitsKeys){

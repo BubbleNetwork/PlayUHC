@@ -26,7 +26,7 @@ import com.microcraftmc.playuhc.threads.PreStartThread;
  * Class information
  * ---------------------
  * Package: com.microcraftmc.playuhc
- * Project: PlayUHC
+ * Project: playuhc
  *
  */
 

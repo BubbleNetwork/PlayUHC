@@ -1,10 +1,11 @@
 package com.microcraftmc.playuhc.threads;
 
+import com.microcraftmc.playuhc.BubbleUHC;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldBorder;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.game.GameManager;
 import com.microcraftmc.playuhc.languages.Lang;
 
@@ -40,7 +41,7 @@ public class WorldBorderThread implements Runnable{
 			startMoving();
 		}else{
 			timeBeforeShrink--;
-			Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getInstance().getPlugin(), this, 20);
+			Bukkit.getScheduler().runTaskLaterAsynchronously(BubbleUHC.getInstance().getPlugin(), this, 20);
 		}
 	}
 	

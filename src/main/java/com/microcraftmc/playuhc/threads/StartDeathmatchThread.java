@@ -3,7 +3,7 @@ package com.microcraftmc.playuhc.threads;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.game.GameManager;
 import com.microcraftmc.playuhc.languages.Lang;
 import com.microcraftmc.playuhc.listeners.WaitForDeathmatchListener;
@@ -34,12 +34,12 @@ public class StartDeathmatchThread implements Runnable{
 		this.task = this;
 		this.listener = new WaitForDeathmatchListener();
 		GameManager.getGameManager().getPlayersManager().setAllPlayersStartDeathmatch();
-		Bukkit.getPluginManager().registerEvents(listener, PlayUhc.getInstance().getPlugin());
+		Bukkit.getPluginManager().registerEvents(listener, BubbleUHC.getInstance().getPlugin());
 	}
 	
 	@Override
 	public void run() {
-		Bukkit.getScheduler().runTask(PlayUhc.getInstance().getPlugin(), new Runnable(){
+		Bukkit.getScheduler().runTask(BubbleUHC.getInstance().getPlugin(), new Runnable(){
 
 			@Override
 			public void run() {
@@ -59,7 +59,7 @@ public class StartDeathmatchThread implements Runnable{
 					}
 					
 					if(timeBeforePVP > 0){
-						Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getInstance().getPlugin(), task,20);
+						Bukkit.getScheduler().runTaskLaterAsynchronously(BubbleUHC.getInstance().getPlugin(), task,20);
 					}
 				}
 				

@@ -3,7 +3,7 @@ package com.microcraftmc.playuhc.threads;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.game.GameManager;
 import com.microcraftmc.playuhc.game.GameState;
 import com.microcraftmc.spigotutils.Sounds;
@@ -46,7 +46,7 @@ public class TimeBeforeEndThread implements Runnable{
 		}
 		
 		if(remainingTime > 0 && (gm.getGameState().equals(GameState.PLAYING) || gm.getGameState().equals(GameState.DEATHMATCH)))
-			Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getInstance().getPlugin(), task, 20);
+			Bukkit.getScheduler().runTaskLaterAsynchronously(BubbleUHC.getInstance().getPlugin(), task, 20);
 	}
 	
 }

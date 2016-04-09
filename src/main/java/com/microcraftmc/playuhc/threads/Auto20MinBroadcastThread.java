@@ -1,8 +1,9 @@
 package com.microcraftmc.playuhc.threads;
 
+import com.microcraftmc.playuhc.BubbleUHC;
 import org.bukkit.Bukkit;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.game.GameManager;
 import com.microcraftmc.playuhc.languages.Lang;
 
@@ -32,14 +33,14 @@ public class Auto20MinBroadcastThread implements Runnable {
 
 	@Override
 	public void run() {
-		Bukkit.getScheduler().runTask(PlayUhc.getInstance().getPlugin(), new Runnable(){
+		Bukkit.getScheduler().runTask(BubbleUHC.getInstance().getPlugin(), new Runnable(){
 
 			@Override
 			public void run() {
 
 				if(broadcast){
 					GameManager.getGameManager().broadcastInfoMessage(Lang.DISPLAY_YOUTUBER_MARK);
-					Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getInstance().getPlugin(), task, 24000);
+					Bukkit.getScheduler().runTaskLaterAsynchronously(BubbleUHC.getInstance().getPlugin(), task, 24000);
 				}
 				
 			}});

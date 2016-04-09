@@ -1,6 +1,6 @@
 package com.microcraftmc.playuhc.listeners;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.configuration.VaultManager;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

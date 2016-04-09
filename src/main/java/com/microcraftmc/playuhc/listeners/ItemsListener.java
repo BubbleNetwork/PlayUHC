@@ -19,7 +19,7 @@ import org.bukkit.inventory.BrewerInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.customitems.Craft;
 import com.microcraftmc.playuhc.customitems.CraftsManager;
 import com.microcraftmc.playuhc.customitems.Kit;
@@ -262,7 +262,7 @@ public class ItemsListener implements Listener {
 			
 			final BrewerInventory inv = (BrewerInventory) event.getInventory();
 			final HumanEntity human = event.getWhoClicked();
-			Bukkit.getScheduler().runTaskLater(PlayUhc.getPlugin(), new CheckBrewingStandAfterClick(inv.getHolder(),human),1);
+			Bukkit.getScheduler().runTaskLater(BubbleUHC.getInstance().getPlugin(), new CheckBrewingStandAfterClick(inv.getHolder(),human),1);
 
 		}
 		
@@ -273,7 +273,7 @@ public class ItemsListener implements Listener {
 	public void onHopperEvent(InventoryMoveItemEvent event) {
 		Inventory inv = event.getDestination();
 		if(inv.getType().equals(InventoryType.BREWING) && GameManager.getGameManager().getConfiguration().getBanLevelTwoPotions() && inv.getHolder() instanceof BrewingStand){
-			Bukkit.getScheduler().runTaskLater(PlayUhc.getPlugin(), new CheckBrewingStandAfterClick((BrewingStand) inv.getHolder(),null),1);
+			Bukkit.getScheduler().runTaskLater(BubbleUHC.getInstance().getPlugin(), new CheckBrewingStandAfterClick((BrewingStand) inv.getHolder(),null),1);
 		}
 		
 	}

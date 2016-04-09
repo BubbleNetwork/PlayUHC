@@ -1,6 +1,6 @@
-name: PlayUhc
+name: BubbleUHC
 version: 1
-main: com.microcraftmc.playuhc.PlayUhc
+main: com.microcraftmc.playuhc.BubbleUHC
 description: Automates UHC games on a dedicated craftbukkit 1.8 server
 soft-depend: [WorldEdit,Vault]
 priority: 80

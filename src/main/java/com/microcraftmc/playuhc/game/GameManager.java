@@ -18,7 +18,7 @@ import org.bukkit.World.Environment;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.commands.ChatCommandExecutor;
 import com.microcraftmc.playuhc.commands.TeleportCommandExecutor;
 import com.microcraftmc.playuhc.commands.UhcCommandExecutor;
@@ -182,7 +182,7 @@ public class GameManager {
 		}
 		
 		if(getConfiguration().getEnableBungeeSupport())
-			PlayUhc.getInstance().getPlugin().getServer().getMessenger().registerOutgoingPluginChannel(PlayUhc.getInstance().getPlugin(), "BungeeCord");
+			BubbleUHC.getInstance().getPlugin().getServer().getMessenger().registerOutgoingPluginChannel(BubbleUHC.getInstance().getPlugin(), "BungeeCord");
 		
 		if(getConfiguration().getEnablePregenerateWorld() && !getConfiguration().getDebug())
 			mapLoader.generateChunks(Environment.NORMAL);
@@ -218,14 +218,14 @@ public class GameManager {
 		loadWorlds();
 		registerCommands();
 		gameState = GameState.WAITING;
-		PlayUhc.getInstance().setState(BubbleGameAPI.State.LOBBY);
+		BubbleUHC.getInstance().setState(BubbleGameAPI.State.LOBBY);
 		Bukkit.getLogger().info(Lang.DISPLAY_MESSAGE_PREFIX+" Players are now allowed to join");
-		Bukkit.getScheduler().scheduleSyncDelayedTask(PlayUhc.getInstance().getPlugin(), new PreStartThread(),0);
+		Bukkit.getScheduler().scheduleSyncDelayedTask(BubbleUHC.getInstance().getPlugin(), new PreStartThread(),0);
 	}
 	
 	public void startGame(){
 		setGameState(GameState.STARTING);
-		PlayUhc.getInstance().setState(BubbleGameAPI.State.PREGAME);
+		BubbleUHC.getInstance().setState(BubbleGameAPI.State.PREGAME);
 		if(!getConfiguration().getAlwaysDay())
 			Bukkit.getWorld(configuration.getOverworldUuid()).setGameRuleValue("doDaylightCycle", "true");
 		broadcastInfoMessage(Lang.GAME_STARTING);
@@ -236,7 +236,7 @@ public class GameManager {
 	
 	public void startWatchingEndOfGame(){
 		gameState = GameState.PLAYING;
-		PlayUhc.getInstance().setState(BubbleGameAPI.State.INGAME);
+		BubbleUHC.getInstance().setState(BubbleGameAPI.State.INGAME);
 
 		World overworld = Bukkit.getWorld(configuration.getOverworldUuid());
 		overworld.setGameRuleValue("doMobSpawning", "true");
@@ -244,11 +244,11 @@ public class GameManager {
 		//TODO: are we using a schematic lobby?
 		getLobby().destroyBoundingBox();
 		getPlayersManager().startWatchPlayerPlayingThread();
-		Bukkit.getScheduler().runTaskAsynchronously(PlayUhc.getInstance().getPlugin(), new ElapsedTimeThread());
-		Bukkit.getScheduler().runTaskAsynchronously(PlayUhc.getInstance().getPlugin(), new EnablePVPThread());
-		Bukkit.getScheduler().runTaskAsynchronously(PlayUhc.getInstance().getPlugin(), new Auto20MinBroadcastThread());
+		Bukkit.getScheduler().runTaskAsynchronously(BubbleUHC.getInstance().getPlugin(), new ElapsedTimeThread());
+		Bukkit.getScheduler().runTaskAsynchronously(BubbleUHC.getInstance().getPlugin(), new EnablePVPThread());
+		Bukkit.getScheduler().runTaskAsynchronously(BubbleUHC.getInstance().getPlugin(), new Auto20MinBroadcastThread());
 		if(getConfiguration().getEnableTimeLimit())
-			Bukkit.getScheduler().runTaskAsynchronously(PlayUhc.getInstance().getPlugin(), new TimeBeforeEndThread());
+			Bukkit.getScheduler().runTaskAsynchronously(BubbleUHC.getInstance().getPlugin(), new TimeBeforeEndThread());
 		worldBorder.startBorderThread();
 	}
 
@@ -265,7 +265,7 @@ public class GameManager {
 	private void loadConfig(){
 		new Lang();
 
-		FileConfiguration cfg = PlayUhc.getInstance().getPlugin().getConfig();
+		FileConfiguration cfg = BubbleUHC.getInstance().getPlugin().getConfig();
 		configuration = new MainConfiguration();
 		configuration.load(cfg);
 		
@@ -292,7 +292,7 @@ public class GameManager {
 			listeners.add(new PingListener());
 			listeners.add(new BlockListener());
 			for(Listener listener : listeners){
-				Bukkit.getServer().getPluginManager().registerEvents(listener, PlayUhc.getInstance().getPlugin());
+				Bukkit.getServer().getPluginManager().registerEvents(listener, BubbleUHC.getInstance().getPlugin());
 			}
 	}
 	
@@ -337,9 +337,9 @@ public class GameManager {
 	
 	private void registerCommands(){
 			// Registers CommandExecutor
-			PlayUhc.getInstance().getPlugin().getCommand("uhc").setExecutor(new UhcCommandExecutor());
-			PlayUhc.getInstance().getPlugin().getCommand("chat").setExecutor(new ChatCommandExecutor());
-			PlayUhc.getInstance().getPlugin().getCommand("teleport").setExecutor(new TeleportCommandExecutor());
+			BubbleUHC.getInstance().getPlugin().getCommand("uhc").setExecutor(new UhcCommandExecutor());
+			BubbleUHC.getInstance().getPlugin().getCommand("chat").setExecutor(new ChatCommandExecutor());
+			BubbleUHC.getInstance().getPlugin().getCommand("teleport").setExecutor(new TeleportCommandExecutor());
 	}
 
 	public void endGame() {
@@ -350,7 +350,7 @@ public class GameManager {
 			broadcastInfoMessage(Lang.GAME_FINISHED);
 			Sounds.playAll(Sound.ENDERDRAGON_GROWL, 1, 2);
 			getPlayersManager().setAllPlayersEndGame();
-			Bukkit.getScheduler().scheduleSyncDelayedTask(PlayUhc.getInstance().getPlugin(), new StopRestartThread(),20);
+			Bukkit.getScheduler().scheduleSyncDelayedTask(BubbleUHC.getInstance().getPlugin(), new StopRestartThread(),20);
 		}
 		
 	}
@@ -373,7 +373,7 @@ public class GameManager {
 			getWorldBorder().setBukkitWorldBorderSize(arenaLocation.getWorld(), arenaLocation.getBlockX(), arenaLocation.getBlockZ(), getArena().getMaxSize());
 			
 			// Start Enable pvp thread
-			Bukkit.getScheduler().scheduleSyncDelayedTask(PlayUhc.getInstance().getPlugin(), new StartDeathmatchThread(),20);
+			Bukkit.getScheduler().scheduleSyncDelayedTask(BubbleUHC.getInstance().getPlugin(), new StartDeathmatchThread(),20);
 		}
 		
 	}

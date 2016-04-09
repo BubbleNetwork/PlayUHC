@@ -2,7 +2,7 @@ package com.microcraftmc.playuhc.threads;
 
 import org.bukkit.Bukkit;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.game.GameManager;
 import com.microcraftmc.playuhc.languages.Lang;
 
@@ -43,7 +43,7 @@ public class StopRestartThread implements Runnable{
 				}
 				
 				timeBeforeStop--;
-				Bukkit.getScheduler().scheduleSyncDelayedTask(PlayUhc.getInstance().getPlugin(), this,20);
+				Bukkit.getScheduler().scheduleSyncDelayedTask(BubbleUHC.getInstance().getPlugin(), this,20);
 				}
 	}
 

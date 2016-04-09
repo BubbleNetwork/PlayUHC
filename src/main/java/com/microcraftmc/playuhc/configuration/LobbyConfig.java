@@ -3,7 +3,7 @@ package com.microcraftmc.playuhc.configuration;
 import java.io.File;
 import java.io.IOException;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -20,7 +20,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
  * Class information
  * ---------------------
  * Package: com.microcraftmc.playuhc
- * Project: PlayUHC
+ * Project: playuhc
  *
  */
 
@@ -46,7 +46,7 @@ public class LobbyConfig {
     }
 
     public void setup() {
-        lobbyFile = new File(PlayUhc.getPlugin().getDataFolder(), "lobby.yml");
+        lobbyFile = new File(BubbleUHC.getInstance().getPlugin().getDataFolder(), "lobby.yml");
         if (lobbyFile.exists()) {
             lobbyConfig = YamlConfiguration.loadConfiguration(lobbyFile);
 

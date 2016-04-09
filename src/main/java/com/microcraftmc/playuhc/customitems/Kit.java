@@ -13,8 +13,8 @@ import org.bukkit.inventory.ItemStack;
  *
  * Class information
  * ---------------------
- * Package: com.microcraftmc.playuhc
- * Project: PlayUHC
+ * Package: com.microcraftmc.BubbleUHC
+ * Project: BubbleUHC
  *
  */
 

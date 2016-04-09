@@ -15,7 +15,7 @@ import org.bukkit.inventory.ItemStack;
  * Class information
  * ---------------------
  * Package: com.microcraftmc.playuhc
- * Project: PlayUHC
+ * Project: playuhc
  *
  */
 
@@ -35,7 +35,7 @@ public class BlockLootConfiguration {
 		try{
 			this.material = Material.valueOf(section.getName());
 		}catch(IllegalArgumentException e){
-			Bukkit.getLogger().warning("[PlayUHC] Couldn't parse section '"+section.getName()+"' in block-loot. This is not an existing block type. Ignoring it.");
+			Bukkit.getLogger().warning("[playuhc] Couldn't parse section '"+section.getName()+"' in block-loot. This is not an existing block type. Ignoring it.");
 			return false;
 		}
 		
@@ -44,7 +44,7 @@ public class BlockLootConfiguration {
 			String[] itemArr = itemStr.split("/");
 			this.loot = new ItemStack(Material.valueOf(itemArr[0]), Integer.parseInt(itemArr[1]), Short.parseShort(itemArr[2]));
 		}catch(Exception e){
-			Bukkit.getLogger().warning("[PlayUHC] Couldn't parse loot '"+material.toString()+"' in block-loot. The syntax must be 'MATERIAL/QUANTITY/DAMAGE'.Ignoring it.");
+			Bukkit.getLogger().warning("[playuhc] Couldn't parse loot '"+material.toString()+"' in block-loot. The syntax must be 'MATERIAL/QUANTITY/DAMAGE'.Ignoring it.");
 			return false;
 		}
 		

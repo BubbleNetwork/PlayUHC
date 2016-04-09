@@ -22,7 +22,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.configuration.MainConfiguration;
 import com.microcraftmc.playuhc.configuration.VaultManager;
 import com.microcraftmc.playuhc.customitems.KitsManager;
@@ -235,7 +235,7 @@ public class PlayersManager {
 			uhcPlayer.setState(PlayerState.PLAYING);
 			uhcPlayer.setUpScoreboard();
 			uhcPlayer.selectDefaultGlobalChat();
-			Bukkit.getScheduler().runTaskLater(PlayUhc.getInstance().getPlugin(), new UpdateScoreboardThread(uhcPlayer), 10);
+			Bukkit.getScheduler().runTaskLater(BubbleUHC.getInstance().getPlugin(), new UpdateScoreboardThread(uhcPlayer), 10);
 			
 			try {
 				player = uhcPlayer.getPlayer();
@@ -386,7 +386,7 @@ public class PlayersManager {
 
 		if(cfg.getEnableBungeeSupport() && cfg.getTimeBeforeSendBungeeAfterEnd() >= 0){
 			for(UhcPlayer player : getPlayersList()){
-				Bukkit.getScheduler().runTaskAsynchronously(PlayUhc.getInstance().getPlugin(), new TimeBeforeSendBungeeThread(player, cfg.getTimeBeforeSendBungeeAfterEnd()));
+				Bukkit.getScheduler().runTaskAsynchronously(BubbleUHC.getInstance().getPlugin(), new TimeBeforeSendBungeeThread(player, cfg.getTimeBeforeSendBungeeAfterEnd()));
 			}
 		}
 		
@@ -513,12 +513,12 @@ public class PlayersManager {
 				gm.getPlayersManager().setPlayerStartPlaying(uhcPlayer);
 			}
 			
-			Bukkit.getScheduler().runTaskLater(PlayUhc.getInstance().getPlugin(), new TeleportPlayersThread(team), delayTeleportByTeam);
+			Bukkit.getScheduler().runTaskLater(BubbleUHC.getInstance().getPlugin(), new TeleportPlayersThread(team), delayTeleportByTeam);
 			Bukkit.getLogger().info("[PlayUHC] Teleporting a team in "+delayTeleportByTeam+" ticks");
 			delayTeleportByTeam += 20; // ticks
 		}
 		
-		Bukkit.getScheduler().runTaskLater(PlayUhc.getInstance().getPlugin(), new Runnable(){
+		Bukkit.getScheduler().runTaskLater(BubbleUHC.getInstance().getPlugin(), new Runnable(){
 
 			@Override
 			public void run() {
@@ -650,7 +650,7 @@ public class PlayersManager {
 			player.removePotionEffect(PotionEffectType.BLINDNESS);
 		}
 		
-		Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getInstance().getPlugin(), new CheckRemainingPlayerThread() , 40);
+		Bukkit.getScheduler().runTaskLaterAsynchronously(BubbleUHC.getInstance().getPlugin(), new CheckRemainingPlayerThread() , 40);
 		
 		
 	}
@@ -660,7 +660,7 @@ public class PlayersManager {
         out.writeUTF("Connect");
         out.writeUTF(GameManager.getGameManager().getConfiguration().getServerBungee());
 		player.sendMessage(message);
-		player.sendPluginMessage(PlayUhc.getInstance().getPlugin(), "BungeeCord", out.toByteArray());
+		player.sendPluginMessage(BubbleUHC.getInstance().getPlugin(), "BungeeCord", out.toByteArray());
 	}
 
 	public void setAllPlayersStartDeathmatch() {

@@ -17,7 +17,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.game.GameManager;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 
@@ -31,7 +31,7 @@ import com.sk89q.worldedit.bukkit.WorldEditPlugin;
  * Class information
  * ---------------------
  * Package: com.microcraftmc.playuhc
- * Project: PlayUHC
+ * Project: playuhc
  *
  */
 
@@ -183,8 +183,8 @@ public class MainConfiguration {
 			alwaysDay = cfg.getBoolean("customize-game-behavior.always-day",true);
 			enablePregenerateWorld = cfg.getBoolean("pre-generate-world.enable",false);
 			restEveryTicks = cfg.getInt("pre-generate-world.rest-every-ticks",20);
-			chunksPerTick = PlayUhc.getPlugin().getConfig().getInt("pre-generate-world.chunks-per-tick",10);
-			restDuraton = PlayUhc.getPlugin().getConfig().getInt("pre-generate-world.rest-duration",20);
+			chunksPerTick = BubbleUHC.getInstance().getPlugin().getConfig().getInt("pre-generate-world.chunks-per-tick",10);
+			restDuraton = BubbleUHC.getInstance().getPlugin().getConfig().getInt("pre-generate-world.rest-duration",20);
 			
 			// SOund on player death
 			String soundDeath = cfg.getString("customize-game-behavior.sound-on-player-death","false");
@@ -207,7 +207,7 @@ public class MainConfiguration {
 				GameManager.getGameManager().setRemainingTime(timeLimit);
 			}else{
 				if(endWithDeathmatch == true){
-					Bukkit.getLogger().info("[PlayUHC] end-with-deathmatch-after-time-limit is set to false because there is no time-limit.");
+					Bukkit.getLogger().info("[BubbleUHC] end-with-deathmatch-after-time-limit is set to false because there is no time-limit.");
 					disableEndWithDeathmatch();
 				}
 			}
@@ -226,7 +226,7 @@ public class MainConfiguration {
 						PotionEffect effect = new PotionEffect(PotionEffectType.getByName(potionArr[0].toUpperCase()),duration,amplifier);
 						potionList.add(effect);
 					}catch(Exception e){
-						Bukkit.getLogger().warning("[PlayUHC] "+potionStr+" ignored, please check the syntax. It must be formated like POTION_NAME/duration/amplifier");
+						Bukkit.getLogger().warning("[BubbleUHC] "+potionStr+" ignored, please check the syntax. It must be formated like POTION_NAME/duration/amplifier");
 					}				
 				}
 				potionEffectOnStart = potionList;
@@ -319,10 +319,10 @@ public class MainConfiguration {
 		private void loadWorldEdit() {
 			Plugin wePlugin = Bukkit.getPluginManager().getPlugin("WorldEdit");
 	        if(wePlugin == null || !(wePlugin instanceof WorldEditPlugin)) {
-	            Bukkit.getLogger().warning("[PlayUHC] WorldEdit plugin not found, there will be no support of schematics.");
+	            Bukkit.getLogger().warning("[BubbleUHC] WorldEdit plugin not found, there will be no support of schematics.");
 	            worldEditLoaded = false;
 	        }else {
-	        	 Bukkit.getLogger().warning("[PlayUHC] Hooked with WorldEdit plugin.");
+	        	 Bukkit.getLogger().warning("[BubbleUHC] Hooked with WorldEdit plugin.");
 	        	worldEditLoaded = true;
 	        }
 		}
@@ -330,10 +330,10 @@ public class MainConfiguration {
 		private void loadVault(){
 			Plugin vault = Bukkit.getPluginManager().getPlugin("Vault");
 	        if(vault == null || !(vault instanceof Vault)) {
-	        	 Bukkit.getLogger().warning("[PlayUHC] Vault plugin not found, there will be no support of economy rewards.");
+	        	 Bukkit.getLogger().warning("[BubbleUHC] Vault plugin not found, there will be no support of economy rewards.");
 	        	 vaultLoaded = false;
 	        }else{
-	        	 Bukkit.getLogger().warning("[PlayUHC] Hooked with Vault plugin.");
+	        	 Bukkit.getLogger().warning("[BubbleUHC] Hooked with Vault plugin.");
 	        	 vaultLoaded = true;
 	        }
 		}

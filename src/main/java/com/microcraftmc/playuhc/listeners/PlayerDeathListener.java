@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.configuration.MainConfiguration;
 import com.microcraftmc.playuhc.configuration.VaultManager;
 import com.microcraftmc.playuhc.customitems.UhcItems;
@@ -87,7 +87,7 @@ public class PlayerDeathListener implements Listener {
 					player.kickPlayer(Lang.DISPLAY_MESSAGE_PREFIX+" "+Lang.KICK_DEAD);
 				}
 				if(cfg.getEnableBungeeSupport() && cfg.getTimeBeforeSendBungeeAfterDeath() >= 0){
-					Bukkit.getScheduler().runTaskAsynchronously(PlayUhc.getPlugin(), new TimeBeforeSendBungeeThread(uhcPlayer, cfg.getTimeBeforeSendBungeeAfterDeath()));
+					Bukkit.getScheduler().runTaskAsynchronously(BubbleUHC.getInstance().getPlugin(), new TimeBeforeSendBungeeThread(uhcPlayer, cfg.getTimeBeforeSendBungeeAfterDeath()));
 				}
 				pm.checkIfRemainingPlayers();
 			}else{
@@ -108,7 +108,7 @@ public class PlayerDeathListener implements Listener {
 
 			if(uhcPlayer.getState().equals(PlayerState.DEAD)){
 				
-				Bukkit.getScheduler().runTaskLater(PlayUhc.getPlugin(), new Runnable(){
+				Bukkit.getScheduler().runTaskLater(BubbleUHC.getInstance().getPlugin(), new Runnable(){
 
 					@Override
 					public void run() {

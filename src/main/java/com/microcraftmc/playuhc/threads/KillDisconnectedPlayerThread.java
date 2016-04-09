@@ -3,7 +3,7 @@ package com.microcraftmc.playuhc.threads;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.exceptions.UhcPlayerDoesntExistException;
 import com.microcraftmc.playuhc.game.GameManager;
 import com.microcraftmc.playuhc.game.GameState;
@@ -41,7 +41,7 @@ public class KillDisconnectedPlayerThread implements Runnable {
 	@Override
 	public void run() {
 		if(GameManager.getGameManager().getGameState().equals(GameState.PLAYING)){
-			Bukkit.getScheduler().runTask(PlayUhc.getInstance().getPlugin(), new Runnable(){
+			Bukkit.getScheduler().runTask(BubbleUHC.getInstance().getPlugin(), new Runnable(){
 
 					@Override
 					public void run() {
@@ -62,7 +62,7 @@ public class KillDisconnectedPlayerThread implements Runnable {
 								}
 							}else{
 								timeLeft-=5;
-								Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getInstance().getPlugin(), task, 100);
+								Bukkit.getScheduler().runTaskLaterAsynchronously(BubbleUHC.getInstance().getPlugin(), task, 100);
 							}
 						}
 						

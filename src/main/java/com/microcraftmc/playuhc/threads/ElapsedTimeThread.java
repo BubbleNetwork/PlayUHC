@@ -2,10 +2,11 @@ package com.microcraftmc.playuhc.threads;
 
 import java.util.Set;
 
+import com.microcraftmc.playuhc.BubbleUHC;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.configuration.VaultManager;
 import com.microcraftmc.playuhc.events.UhcTimeEvent;
 import com.microcraftmc.playuhc.exceptions.UhcPlayerNotOnlineException;
@@ -82,7 +83,7 @@ public class ElapsedTimeThread implements Runnable{
 		}
 		
 		if(!gm.getGameState().equals(GameState.ENDED)){
-			Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getInstance().getPlugin(), task, 20);
+			Bukkit.getScheduler().runTaskLaterAsynchronously(BubbleUHC.getInstance().getPlugin(), task, 20);
 		}	
 	}
 	

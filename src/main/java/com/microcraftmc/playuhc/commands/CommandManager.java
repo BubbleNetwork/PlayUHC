@@ -21,7 +21,7 @@ import com.microcraftmc.playuhc.players.UhcTeam;
  * Class information
  * ---------------------
  * Package: com.microcraftmc.playuhc
- * Project: PlayUHC
+ * Project: playuhc
  *
  */
 

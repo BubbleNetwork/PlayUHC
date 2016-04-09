@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.exceptions.UhcPlayerNotOnlineException;
 import com.microcraftmc.playuhc.game.GameManager;
 import com.microcraftmc.playuhc.languages.Lang;
@@ -67,7 +67,7 @@ public class UpdateScoreboardThread implements Runnable{
 	}
 	@Override
 	public void run() {
-		Bukkit.getScheduler().runTask(PlayUhc.getInstance().getPlugin(), new Runnable(){
+		Bukkit.getScheduler().runTask(BubbleUHC.getInstance().getPlugin(), new Runnable(){
 
 			@Override
 			public void run() {
@@ -79,7 +79,7 @@ public class UpdateScoreboardThread implements Runnable{
 				}catch (UhcPlayerNotOnlineException e) {
 					// No scoreboard for offline players
 				}
-				Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getInstance().getPlugin(), task, nextTick);
+				Bukkit.getScheduler().runTaskLaterAsynchronously(BubbleUHC.getInstance().getPlugin(), task, nextTick);
 				
 			}});
 		

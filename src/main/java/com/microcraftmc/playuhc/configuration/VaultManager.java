@@ -7,7 +7,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.game.GameManager;
 
 /**
@@ -19,8 +19,8 @@ import com.microcraftmc.playuhc.game.GameManager;
  *
  * Class information
  * ---------------------
- * Package: com.microcraftmc.playuhc
- * Project: PlayUHC
+ * Package: com.microcraftmc.BubbleUHC
+ * Project: BubbleUHC
  *
  */
 
@@ -48,7 +48,7 @@ public class VaultManager {
 				
 				final OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(player.getUniqueId());
 				if(offlinePlayer != null){
-					Bukkit.getScheduler().runTaskAsynchronously(PlayUhc.getPlugin(), new Runnable(){
+					Bukkit.getScheduler().runTaskAsynchronously(BubbleUHC.getInstance().getPlugin(), new Runnable(){
 
 						@Override
 						public void run() {

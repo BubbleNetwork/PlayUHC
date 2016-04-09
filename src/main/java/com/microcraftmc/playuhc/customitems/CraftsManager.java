@@ -17,7 +17,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.languages.Lang;
 
 /**
@@ -29,8 +29,8 @@ import com.microcraftmc.playuhc.languages.Lang;
  *
  * Class information
  * ---------------------
- * Package: com.microcraftmc.playuhc
- * Project: PlayUHC
+ * Package: com.microcraftmc.BubbleUHC
+ * Project: BubbleUHC
  *
  */
 
@@ -56,10 +56,10 @@ public class CraftsManager {
 	}
 	
 	public static void loadBannedCrafts(){
-		Bukkit.getLogger().info("[PlayUHC] Loading banned crafts list");
+		Bukkit.getLogger().info("[BubbleUHC] Loading banned crafts list");
 		bannedCrafts = Collections.synchronizedList(new ArrayList<ItemStack>());
 		
-		FileConfiguration cfg = PlayUhc.getPlugin().getConfig();
+		FileConfiguration cfg = BubbleUHC.getInstance().getPlugin().getConfig();
 		for(String itemLine : cfg.getStringList("customize-game-behavior.ban-items-crafts")){
 			
 			String[] itemData = itemLine.split("/");
@@ -68,10 +68,10 @@ public class CraftsManager {
 					throw new IllegalArgumentException("Couldn't parse "+itemLine+" : Each banned craft should be formatted like ITEM/DATA");
 				}else{
 					bannedCrafts.add(new ItemStack(Material.valueOf(itemData[0]), 1, Short.parseShort(itemData[1])));
-					Bukkit.getLogger().info("[PlayUHC] Banned item "+itemLine+" registered");
+					Bukkit.getLogger().info("[BubbleUHC] Banned item "+itemLine+" registered");
 				}
 			}catch(IllegalArgumentException e){
-				Bukkit.getLogger().warning("[PlayUHC] Failed to register "+itemLine+" banned craft");
+				Bukkit.getLogger().warning("[BubbleUHC] Failed to register "+itemLine+" banned craft");
 				Bukkit.getLogger().warning(e.getMessage());
 			}
 		}
@@ -79,9 +79,9 @@ public class CraftsManager {
 	}
 	
 	public static void loadCrafts(){
-		Bukkit.getLogger().info("[PlayUHC] Loading custom crafts");
+		Bukkit.getLogger().info("[BubbleUHC] Loading custom crafts");
 		crafts = Collections.synchronizedList(new ArrayList<Craft>());
-		FileConfiguration cfg = PlayUhc.getPlugin().getConfig();
+		FileConfiguration cfg = BubbleUHC.getInstance().getPlugin().getConfig();
 		Set<String> craftsKeys = cfg.getConfigurationSection("customize-game-behavior.add-custom-crafts").getKeys(false);
 		for(String craftKey : craftsKeys){
 			ConfigurationSection section = cfg.getConfigurationSection("customize-game-behavior.add-custom-crafts."+craftKey);
@@ -93,7 +93,7 @@ public class CraftsManager {
 			
 			try{
 
-				Bukkit.getLogger().info("[PlayUHC] Loading custom craft "+name);
+				Bukkit.getLogger().info("[BubbleUHC] Loading custom craft "+name);
 				
 				// Recipe
 				String[] lines = new String[3];
@@ -145,7 +145,7 @@ public class CraftsManager {
 				getCrafts().add(new Craft(name, recipe, craft, limit));
 			}catch(IllegalArgumentException e){
 				//ignore craft if bad formatting
-				Bukkit.getLogger().warning("[PlayUHC] Failed to register "+name+" custom craft : syntax error");
+				Bukkit.getLogger().warning("[BubbleUHC] Failed to register "+name+" custom craft : syntax error");
 				Bukkit.getLogger().warning(e.getMessage());
 			}
 			

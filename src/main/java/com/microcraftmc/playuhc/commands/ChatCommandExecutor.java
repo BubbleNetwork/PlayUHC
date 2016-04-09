@@ -23,7 +23,7 @@ import com.microcraftmc.playuhc.players.UhcPlayer;
  * Class information
  * ---------------------
  * Package: com.microcraftmc.playuhc
- * Project: PlayUHC
+ * Project: playuhc
  *
  */
 

@@ -3,7 +3,7 @@ package com.microcraftmc.playuhc.threads;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.game.GameManager;
 import com.microcraftmc.playuhc.game.GameState;
 import com.microcraftmc.playuhc.languages.Lang;
@@ -36,7 +36,7 @@ public class EnablePVPThread implements Runnable{
 	
 	@Override
 	public void run() {
-		Bukkit.getScheduler().runTask(PlayUhc.getInstance().getPlugin(), new Runnable(){
+		Bukkit.getScheduler().runTask(BubbleUHC.getInstance().getPlugin(), new Runnable(){
 
 			@Override
 			public void run() {
@@ -60,10 +60,10 @@ public class EnablePVPThread implements Runnable{
 						
 						if(timeBeforePVP >= 20){
 							timeBeforePVP -= 10;
-							Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getInstance().getPlugin(), task,200);
+							Bukkit.getScheduler().runTaskLaterAsynchronously(BubbleUHC.getInstance().getPlugin(), task,200);
 						}else{
 							timeBeforePVP --;
-							Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getInstance().getPlugin(), task,20);
+							Bukkit.getScheduler().runTaskLaterAsynchronously(BubbleUHC.getInstance().getPlugin(), task,20);
 						}
 					}
 				}

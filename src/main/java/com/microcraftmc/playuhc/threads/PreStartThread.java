@@ -5,7 +5,7 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.configuration.MainConfiguration;
 import com.microcraftmc.playuhc.game.GameManager;
 import com.microcraftmc.playuhc.languages.Lang;
@@ -64,7 +64,7 @@ public class PreStartThread implements Runnable{
 	@Override
 	public void run() {
 		
-		Bukkit.getScheduler().runTask(PlayUhc.getInstance().getPlugin(), new Runnable(){
+		Bukkit.getScheduler().runTask(BubbleUHC.getInstance().getPlugin(), new Runnable(){
 
 			@Override
 			public void run() {
@@ -94,7 +94,7 @@ public class PreStartThread implements Runnable{
 						remainingTime--;
 						
 						if(remainingTime == -1)
-							Bukkit.getScheduler().runTask(PlayUhc.getInstance().getPlugin(), new Runnable(){
+							Bukkit.getScheduler().runTask(BubbleUHC.getInstance().getPlugin(), new Runnable(){
 
 								@Override
 								public void run() {
@@ -102,13 +102,13 @@ public class PreStartThread implements Runnable{
 								}
 							});
 						else		
-							Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getInstance().getPlugin(), task,20);
+							Bukkit.getScheduler().runTaskLaterAsynchronously(BubbleUHC.getInstance().getPlugin(), task,20);
 				}else{
 					if(pause == false && remainingTime < timeBeforeStart+1){
 						gm.broadcastInfoMessage(Lang.GAME_STARTING_CANCELLED);
 					}
 					remainingTime = timeBeforeStart+1;
-					Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getInstance().getPlugin(), task,20);
+					Bukkit.getScheduler().runTaskLaterAsynchronously(BubbleUHC.getInstance().getPlugin(), task,20);
 				}
 			}
 			

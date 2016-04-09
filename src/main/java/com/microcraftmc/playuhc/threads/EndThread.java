@@ -2,7 +2,7 @@ package com.microcraftmc.playuhc.threads;
 
 import org.bukkit.Bukkit;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.game.GameManager;
 import com.microcraftmc.playuhc.languages.Lang;
 
@@ -29,7 +29,7 @@ public class EndThread implements Runnable{
 			instance.run = false;
 		}
 		instance = new EndThread();
-		Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getInstance().getPlugin(), instance, 20);
+		Bukkit.getScheduler().runTaskLaterAsynchronously(BubbleUHC.getInstance().getPlugin(), instance, 20);
 	}
 	
 	public static void stop(){
@@ -52,7 +52,7 @@ public class EndThread implements Runnable{
 	public void run() {
 		
 		if(run){
-			Bukkit.getScheduler().runTask(PlayUhc.getInstance().getPlugin(), new Runnable() {
+			Bukkit.getScheduler().runTask(BubbleUHC.getInstance().getPlugin(), new Runnable() {
 				
 				@Override
 				public void run(){ 
@@ -66,7 +66,7 @@ public class EndThread implements Runnable{
 							gm.broadcastInfoMessage(Lang.PLAYERS_ALL_HAVE_LEFT+" "+timeBeforeEnd);
 						}
 						timeBeforeEnd--;
-						Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getInstance().getPlugin(), EndThread.this,20);
+						Bukkit.getScheduler().runTaskLaterAsynchronously(BubbleUHC.getInstance().getPlugin(), EndThread.this,20);
 					}
 				}
 			});

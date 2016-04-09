@@ -5,7 +5,7 @@ import org.bukkit.World;
 import org.bukkit.WorldBorder;
 import org.bukkit.configuration.file.FileConfiguration;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.threads.WorldBorderThread;
 
 /**
@@ -30,7 +30,7 @@ public class UhcWorldBorder {
 	private long timeBeforeShrink;
 	
 	public UhcWorldBorder(){
-		FileConfiguration cfg = PlayUhc.getPlugin().getConfig();
+		FileConfiguration cfg = BubbleUHC.getInstance().getPlugin().getConfig();
 		moving = cfg.getBoolean("border.moving",true);
 		startSize = cfg.getInt("border.start-size",1000);
 		endSize = cfg.getInt("border.end-size",0);
@@ -52,7 +52,7 @@ public class UhcWorldBorder {
 	
 	
 	public void setUpBukkitBorder(){
-		Bukkit.getScheduler().runTaskLater(PlayUhc.getPlugin(), new Runnable(){
+		Bukkit.getScheduler().runTaskLater(BubbleUHC.getInstance().getPlugin(), new Runnable(){
 
 			@Override
 			public void run() {
@@ -98,7 +98,7 @@ public class UhcWorldBorder {
 
 	public void startBorderThread() {
 		if(getMoving()){
-			Bukkit.getScheduler().runTaskAsynchronously(PlayUhc.getPlugin(), new WorldBorderThread(timeBeforeShrink, endSize, timeToShrink));
+			Bukkit.getScheduler().runTaskAsynchronously(BubbleUHC.getInstance().getPlugin(), new WorldBorderThread(timeBeforeShrink, endSize, timeToShrink));
 		}
 		
 	}

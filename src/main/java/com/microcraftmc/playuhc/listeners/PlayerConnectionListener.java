@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import com.microcraftmc.playuhc.PlayUhc;
+import com.microcraftmc.playuhc.BubbleUHC;
 import com.microcraftmc.playuhc.exceptions.UhcPlayerDoesntExistException;
 import com.microcraftmc.playuhc.exceptions.UhcPlayerJoinException;
 import com.microcraftmc.playuhc.exceptions.UhcTeamException;
@@ -68,7 +68,7 @@ public class PlayerConnectionListener implements Listener{
 	
 	@EventHandler(priority=EventPriority.HIGHEST)
 	public void onPlayerJoin(final PlayerJoinEvent event){
-		Bukkit.getScheduler().runTaskLater(PlayUhc.getPlugin(), new Runnable() {
+		Bukkit.getScheduler().runTaskLater(BubbleUHC.getInstance().getPlugin(), new Runnable() {
 			
 			@Override
 			public void run() {
@@ -111,7 +111,7 @@ public class PlayerConnectionListener implements Listener{
 				try {
 					uhcPlayer = gm.getPlayersManager().getUhcPlayer(event.getPlayer());
 					if(gm.getConfiguration().getEnableKillDisconnectedPlayers() && uhcPlayer.getState().equals(PlayerState.PLAYING)){
-						Bukkit.getScheduler().runTaskLaterAsynchronously(PlayUhc.getPlugin(), new KillDisconnectedPlayerThread(event.getPlayer().getName()),1);
+						Bukkit.getScheduler().runTaskLaterAsynchronously(BubbleUHC.getInstance().getPlugin(), new KillDisconnectedPlayerThread(event.getPlayer().getName()),1);
 					}
 					gm.getPlayersManager().checkIfRemainingPlayers();
 				}catch (UhcPlayerDoesntExistException e) {

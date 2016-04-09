@@ -9,6 +9,6 @@
 ### Class information
 ---------------------
 * Package: com.microcraftmc.playuhc
-* Project: PlayUHC
+* Project: playuhc
 
-**Exclusive authorized use of PlayUHC granted to BubbleNetwork**
+**Exclusive authorized use of playuhc granted to BubbleNetwork**

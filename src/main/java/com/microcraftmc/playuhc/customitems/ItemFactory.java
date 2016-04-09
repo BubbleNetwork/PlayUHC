@@ -13,8 +13,8 @@ import org.bukkit.inventory.meta.SkullMeta;
  *
  * Class information
  * ---------------------
- * Package: com.microcraftmc.playuhc
- * Project: PlayUHC
+ * Package: com.microcraftmc.BubbleUHC
+ * Project: BubbleUHC
  *
  */
 
