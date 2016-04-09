@@ -54,20 +54,9 @@ public class BubbleUHC extends BubbleGameAPI {
 		super("BubbleUHC", GameMode.SURVIVAL, "NONE", 4);
 		instance = this;
 		scoreboard = new UhcBoard();
-	}
-
-	public void onEnable(){
-
-		getPlugin().saveDefaultConfig();
 
 		// Blocks players joins while loading the plugin
 		Bukkit.getServer().setWhitelist(true);
-
-		
-	}
-
-	public void onDisable(){
-		Bukkit.getLogger().info("Plugin BubbleUHC disabled");
 	}
 
 	public void onStateChange(State oldstate, State newstate) {
@@ -126,7 +115,7 @@ public class BubbleUHC extends BubbleGameAPI {
 
 	@Override
 	public void cleanup() {
-
+		BubbleNetwork.getInstance().getLogger().log(Level.INFO, "BubbleUHC has been cleaned up!");
 	}
 
 	public GameManager getGameManager() {
