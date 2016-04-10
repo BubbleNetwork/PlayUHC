@@ -1,6 +1,5 @@
 package com.microcraftmc.playuhc;
 
-import com.microcraftmc.playuhc.customitems.Kit;
 import com.microcraftmc.playuhc.map.UhcMap;
 import com.microcraftmc.playuhc.scoreboard.UhcBoard;
 import com.thebubblenetwork.api.framework.BubbleNetwork;
@@ -8,6 +7,7 @@ import com.thebubblenetwork.api.framework.plugin.util.BubbleRunnable;
 import com.thebubblenetwork.api.game.kit.KitManager;
 import com.thebubblenetwork.api.game.maps.GameMap;
 import com.thebubblenetwork.api.game.maps.MapData;
+import com.thebubblenetwork.api.global.file.DownloadUtil;
 import com.thebubblenetwork.framework.api.global.bubblepackets.messaging.messages.handshake.JoinableUpdate;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -16,6 +16,7 @@ import com.thebubblenetwork.api.game.BubbleGameAPI;
 
 import com.microcraftmc.playuhc.game.GameManager;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,18 +46,30 @@ public class BubbleUHC extends BubbleGameAPI {
 	public static BubbleUHC getInstance() {
 		return instance;
 	}
-
 	private  GameManager gameManager;
-
 	private UhcBoard scoreboard;
+	private File config;
+	private BubbleNetwork network;
+	private YamlConfiguration configuration;
 
+	@SuppressWarnings("fallthrough")
 	public BubbleUHC() {
 		super("BubbleUHC", GameMode.SURVIVAL, "NONE", 4);
 		instance = this;
+		network = BubbleNetwork.getInstance();
 		scoreboard = new UhcBoard();
 
-		// Blocks players joins while loading the plugin
-		Bukkit.getServer().setWhitelist(true);
+		config = new File(getPlugin().getDataFolder(), "config.yml");
+
+		//download uhc config
+		try {
+			downloadFile(config, "uhcconfig.yml");
+		} catch (Exception e) {
+			getPlugin().getLogger().log(Level.WARNING, "Failed to download UHC configuration", e);
+		}
+
+		//load the configuration file
+		configuration = YamlConfiguration.loadConfiguration(config);
 	}
 
 	public void onStateChange(State oldstate, State newstate) {
@@ -76,14 +89,17 @@ public class BubbleUHC extends BubbleGameAPI {
 			Bukkit.broadcastMessage("Thank you for playing BubbleUHC");
 		}
 		else if (newstate == State.LOBBY) {
-			new BubbleRunnable() {
-				public void run() {
+			if(oldstate == State.RESTARTING) {
+				new BubbleRunnable() {
+					public void run() {
 
-					gameManager = new GameManager();
-					gameManager.loadNewGame();
+						gameManager = new GameManager();
+						gameManager.loadNewGame();
 
-				}
-			}.runTask(this);
+					}
+				}.runTask(this);
+			}
+
 		}
 		else if (newstate == State.RESTARTING) {
 			BubbleNetwork.getInstance().getLogger().log(Level.INFO, "BubbleUHC is currently restarting");

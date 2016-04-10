@@ -280,8 +280,8 @@ public class GameManager {
 
 	private void registerListeners(){
 		// Registers Listeners
-			List<Listener> listeners = new ArrayList<Listener>();		
-			listeners.add(new PlayerConnectionListener());	
+			List<Listener> listeners = new ArrayList<Listener>();
+			listeners.add(new PlayerConnectionListener());
 			listeners.add(new PlayerChatListener());
 			listeners.add(new PlayerDamageListener());
 			listeners.add(new ItemsListener());
