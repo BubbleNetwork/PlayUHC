@@ -8,7 +8,7 @@ import com.thebubblenetwork.api.game.kit.KitManager;
 import com.thebubblenetwork.api.game.maps.GameMap;
 import com.thebubblenetwork.api.game.maps.MapData;
 import com.thebubblenetwork.api.global.file.DownloadUtil;
-import com.thebubblenetwork.framework.api.global.bubblepackets.messaging.messages.handshake.JoinableUpdate;
+import com.thebubblenetwork.api.global.bubblepackets.messaging.messages.handshake.JoinableUpdate;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.World;
